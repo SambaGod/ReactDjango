@@ -1,1 +1,1 @@
-https://github.com/SambaGod/ReactDjango.git
+Advanced full stack web application using ReactJS and Django
