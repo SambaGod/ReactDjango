@@ -2,18 +2,22 @@ import React from 'react';
 import Header from './components/header';
 import Main from './components/main';
 import Sidebar from './components/sidebar';
+import { ThemeProvider } from '@emotion/react';
+import theme from './theme';
 import './App.css';
 
 function App() {
 
   return (
-    <div className="App">
-      <Header />
-      <div className='general-content'>
-        <Sidebar />
-        <Main />
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <div className='general-content'>
+          <Sidebar />
+          <Main />
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
