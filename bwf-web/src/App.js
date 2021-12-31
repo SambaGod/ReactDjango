@@ -1,14 +1,18 @@
 import React from 'react';
-import GroupList from './components/groupList';
+import Header from './components/header';
+import Main from './components/main';
+import Sidebar from './components/sidebar';
 import './App.css';
 
 function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <GroupList />
-      </header>
+      <Header />
+      <div className='general-content'>
+        <Sidebar />
+        <Main />
+      </div>
     </div>
   );
 }
