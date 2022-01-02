@@ -23,6 +23,15 @@ export default function GroupDetails() {
                 <p><strong>Name:</strong> {group.name}</p>
                 <p><strong>Location:</strong> {group.location}</p>
                 <p><strong>Description:</strong> {group.description}</p>
+
+                <h2>Events</h2>
+                {group.events.map(event => {return (
+                  <ul key={event.id}>
+                    <li>
+                      <strong>{event.team1}</strong> VS <strong>{event.team2}</strong>
+                    </li>
+                  </ul>
+                )})}
             </>
             }
         </div>
