@@ -1,10 +1,14 @@
 from django.contrib.auth.models import User
-from .models import Group, Event
+from .models import Group, Event, UserProfile
 from rest_framework import viewsets
-from .serializers import GroupSerializer, GroupFullSerializer, EventSerializer, UserSerializer
+from .serializers import GroupSerializer, GroupFullSerializer, EventSerializer, UserSerializer, UserProfileSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+
+class UserProfileViewset(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
 
 class GroupViewset(viewsets.ModelViewSet):
     queryset = Group.objects.all()
