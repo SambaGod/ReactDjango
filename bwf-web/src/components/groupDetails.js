@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useFetchGroup } from '../hooks/fetchGroup';
 import { DateTime } from 'luxon';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 
 export default function GroupDetails() {
   const { id } = useParams();
@@ -33,7 +35,8 @@ export default function GroupDetails() {
                   <ul key={event.id}>
                     <li>
                       <p><strong>{event.team1}</strong> VS <strong>{event.team2}</strong></p>
-                      <p>At: {date.toFormat('dd.MM.yyyy HH:mm')}</p>
+                      <p><CalendarTodayIcon /> {date.toFormat('dd.MM.yyyy')}</p>
+                      <p><ScheduleIcon /> {date.toFormat('HH:mm')}</p>
                     </li>
                   </ul>
                 )})}
