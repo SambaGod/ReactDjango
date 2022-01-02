@@ -2,10 +2,23 @@ import {useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useFetchGroup } from '../hooks/fetchGroup';
 import { DateTime } from 'luxon';
+import { makeStyles } from '@mui/styles';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 
+const useStyles = makeStyles({
+  dateTime: {
+    fontSize: '18px',
+    marginRight: '3px',
+    marginTop: '10px',
+    color: '#ed1d25'
+  }
+});
+
 export default function GroupDetails() {
+
+  const classes = useStyles();
+
   const { id } = useParams();
   const [data, loading, error] = useFetchGroup(id);
   const [group, setGroup] = useState(null);
@@ -35,8 +48,12 @@ export default function GroupDetails() {
                   <ul key={event.id}>
                     <li>
                       <p><strong>{event.team1}</strong> VS <strong>{event.team2}</strong></p>
-                      <p><CalendarTodayIcon /> {date.toFormat('dd.MM.yyyy')}</p>
-                      <p><ScheduleIcon /> {date.toFormat('HH:mm')}</p>
+                      <p>
+                        <CalendarTodayIcon className={classes.dateTime} /> {date.toFormat('dd.MM.yyyy')}
+                      </p>
+                      <p>
+                        <ScheduleIcon className={classes.dateTime} /> {date.toFormat('HH:mm')}
+                      </p>
                     </li>
                   </ul>
                 )})}

@@ -5,6 +5,11 @@ const theme = createTheme({
         primary: {
             main: "#ed1d25"
         }
+    },
+    colors: {
+        bgColor: '#bababa',
+        bgLightColor: '#eeeeee',
+        mainAccentColor: '#ed1d25'
     }
 });
 
