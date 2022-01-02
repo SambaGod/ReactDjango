@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { getGroups } from '../services/groupServices';
 
 function GroupList() {
 
@@ -8,20 +10,20 @@ function GroupList() {
 
   useEffect(() => {
     setLoading(true);
-      const getGroups = async () => {
-        await fetch('http://127.0.0.1:8000/api/groups/')
-        .then(res => res.json())
-        .then( groups => {
-          setGroups(groups);
-          setLoading(false);
-        }).catch(
+      const getData = async () => {
+        await getGroups().then(
+          data => {
+            setLoading(false);
+            setGroups(data);
+          }
+        ).catch(
           e => {
             setError(true);
             setLoading(false);
           }
         )
       }
-      getGroups();
+      getData();
     }, []);
 
     if (error) return <h1>Error</h1>
@@ -29,7 +31,12 @@ function GroupList() {
 
   return (
     <div>
-        {groups && groups.map(group => <p key={group.id}>{group.name} : {group.location} : {group.description}</p>)}
+        {groups && groups.map(group => {
+          return (
+            <Link key={group.id} to={`details/${group.id}`}>
+              <p>{group.name} : {group.location} : {group.description}</p>
+            </Link>
+          )})}
     </div>
   );
 }
