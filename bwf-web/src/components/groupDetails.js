@@ -1,28 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getGroup } from '../services/groupServices';
+import { useFetchGroup } from '../hooks/fetchGroup';
 
 export default function GroupDetails() {
-  const{ id } = useParams(); 
+  const { id } = useParams();
+  const [data, loading, error] = useFetchGroup(id);
   const [group, setGroup] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-      const getGroups = async () => {
-        await getGroup(id).then(data => {
-            setLoading(false);
-            setGroup(data);
-        }).catch(
-        e => {
-            setError(true);
-            setLoading(false);
-        }
-        )
-      }
-      getGroups();
-    }, []);
+    setGroup(data);
+  }, [data]);
 
     if (error) return <h1>Error</h1>
     if (loading) return <h1>Loading...</h1>
