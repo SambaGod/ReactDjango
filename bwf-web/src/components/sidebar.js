@@ -9,18 +9,20 @@ export default function Sidebar() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const {authData, setAuthData} = useAuth();
+    const {authData, setAuth} = useAuth();
 
     const handleSubmit = async e => {
         e.preventDefault();
         const data = await auth({username, password});
-        setAuthData(data);
+        setAuth(data);
     }
+
+    const logout = () => setAuth(null);
 
     return (
         <div className='sidebar'>
             <h2>Sidebar</h2>
-            {authData && <p>{authData}</p>}
+            {!authData ?
             <form onSubmit={handleSubmit}>
             <Grid container spacing={1} alignItems='center'>
                 <Grid item xs={2}>
@@ -49,6 +51,17 @@ export default function Sidebar() {
             </Grid>
             <Button variant="contained" color="primary" type="submit">Login</Button>
             </form>
+            :
+            <div>
+                <p>{authData.user.username}</p>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    onClick={() => logout()}
+                >Logout</Button>
+            </div>
+            }
         </div>
     )
 }

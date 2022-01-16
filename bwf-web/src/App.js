@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
 
-  const user = 'randomUser';
+  const user = JSON.parse(localStorage.getItem('samba-user'));
 
   return (
     <ThemeProvider theme={theme}>

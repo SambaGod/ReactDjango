@@ -6,8 +6,17 @@ export const AuthProvider = ({user, children}) => {
 
     const [authData, setAuthData] = useState(user);
 
+    const setAuth = newUser => {
+        if (newUser){
+            localStorage.setItem('samba-user', JSON.stringify(newUser));
+        } else {
+            localStorage.removeItem('samba-user');
+        }
+        setAuthData(newUser);
+    }
+
     return (
-        <AuthContext.Provider value={{authData, setAuthData}}>
+        <AuthContext.Provider value={{authData, setAuth}}>
             {children}
         </AuthContext.Provider>
     );
