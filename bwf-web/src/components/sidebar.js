@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { Button, Grid, TextField } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
 
@@ -50,6 +51,9 @@ export default function Sidebar() {
                 </Grid>
             </Grid>
             <Button variant="contained" color="primary" type="submit">Login</Button>
+            <p>
+                <Link to={'/register'}>Don't have an account? register here</Link>
+            </p>
             </form>
             :
             <div>

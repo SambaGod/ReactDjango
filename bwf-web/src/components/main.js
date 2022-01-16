@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import GroupList from './groupList';
 import GroupDetails from './groupDetails';
+import Register from './register';
 
 export default function Main() {
 
@@ -14,6 +15,7 @@ export default function Main() {
                 <Routes>
                     <Route exact path='/' element={<GroupList/>} />
                     <Route path='/details/:id' element={<GroupDetails/>} />
+                    <Route path='/register' element={<Register/>} />
                 </Routes>
         </div>
     )
