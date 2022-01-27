@@ -21,3 +21,12 @@ export function register(userData){
     .then(res => res.json())
     .catch(e => console.log(e));
 }
+
+export function uploadAvatar(profileId, data){
+    return fetch(`http://127.0.0.1:8000/api/profile/${profileId}/`, {
+        method: 'PUT',
+        body: data
+    })
+    .then(res => res.json())
+    .catch(e => console.log(e));
+}
