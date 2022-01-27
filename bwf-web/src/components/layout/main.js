@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import GroupList from './groupList';
-import GroupDetails from './groupDetails';
-import Register from './register';
+import { useAuth } from '../../hooks/useAuth';
+import GroupList from '../group/groupList';
+import GroupDetails from '../group/groupDetails';
+import Register from '../user/register';
 
 export default function Main() {
 

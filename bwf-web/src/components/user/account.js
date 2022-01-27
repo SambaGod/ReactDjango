@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { Grid, TextField, Button } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import Email from '@mui/icons-material/Email';
+import { register } from "../../services/userServices";
 
 export default function Register() {
 
@@ -12,14 +12,14 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
-    const { authData } = useAuth();
 
     const passMatch = () => {return password === passwordConfirm};
 
     const handleSubmit = async e => {
         e.preventDefault();
         if (passMatch()) {
-            console.log('all good', username, password, email);
+            const regData = await register({username, email, password, profile:{is_premium:false}});
+            regData && console.log(regData);
         } else {
             console.log('pass didn\'t match');
         }

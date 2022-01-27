@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useFetchGroup } from '../hooks/fetchGroup';
+import { useFetchGroup } from '../../hooks/fetchGroup';
 import { DateTime } from 'luxon';
 import { makeStyles } from '@mui/styles';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';

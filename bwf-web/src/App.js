@@ -2,9 +2,9 @@ import React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
-import Header from './components/header';
-import Main from './components/main';
-import Sidebar from './components/sidebar';
+import Header from './components/layout/header';
+import Main from './components/layout/main';
+import Sidebar from './components/layout/sidebar';
 import theme from './theme';
 import './App.css';
 

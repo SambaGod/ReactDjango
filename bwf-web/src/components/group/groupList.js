@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { getGroups } from '../services/groupServices';
+import { getGroups } from '../../services/groupServices';
 
 function GroupList() {
 

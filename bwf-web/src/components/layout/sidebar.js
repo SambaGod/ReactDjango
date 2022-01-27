@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import { auth } from '../services/userServices';
-import { useAuth } from '../hooks/useAuth';
+import { auth } from '../../services/userServices';
+import { useAuth } from '../../hooks/useAuth';
 import { Button, Grid, TextField } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';

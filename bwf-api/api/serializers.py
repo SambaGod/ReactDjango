@@ -6,7 +6,7 @@ from .models import Group, Event, UserProfile
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('image',)
+        fields = ('image', 'is_premium', 'bio')
 
 class UserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer()
@@ -15,12 +15,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password', 'profile')
         extra_kwargs = {'password': {'write_only': True, 'required': False}}
         
-        def create(self, validated_data):
-            profile_data = validated_data.pop('profile')
-            user = User.objects.create_user(**validated_data)
-            UserProfile.objects.create(user=user, **profile_data)
-            Token.objects.create(user=user)
-            return user
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile')
+        user = User.objects.create_user(**validated_data)
+        UserProfile.objects.create(user=user, **profile_data)
+        Token.objects.create(user=user)
+        return user
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
