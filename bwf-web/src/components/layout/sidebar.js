@@ -64,7 +64,7 @@ export default function Sidebar() {
                 <div>
                     <img src={'http://127.0.0.1:8000'+authData.user.profile.image} alt={authData.user.username} width={100} />
                 </div>
-                <p><strong>{authData.user.username}</strong></p>
+                <p>{authData.user.username}</p>
                 <Button
                     variant="contained"
                     color="primary"
