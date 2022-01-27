@@ -22,7 +22,6 @@ export default function Sidebar() {
 
     return (
         <div className='sidebar'>
-            <h2>Sidebar</h2>
             {!authData ?
             <form onSubmit={handleSubmit}>
             <Grid container spacing={1} alignItems='center'>
@@ -50,7 +49,12 @@ export default function Sidebar() {
                     />
                 </Grid>
             </Grid>
-            <Button variant="contained" color="primary" type="submit">Login</Button>
+            <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{mt:2}}
+            >Login</Button>
             <p>
                 <Link to={'/register'}>Don't have an account? register here</Link>
             </p>

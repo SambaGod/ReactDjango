@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { auth } from '../../services/userServices';
+import { Link, useNavigate } from "react-router-dom";
 import { Grid, TextField, Button } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import Email from '@mui/icons-material/Email';
 import { register } from "../../services/userServices";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Register() {
 
+    const navigate = useNavigate();
+    const { setAuth } = useAuth();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +23,11 @@ export default function Register() {
         e.preventDefault();
         if (passMatch()) {
             const regData = await register({username, email, password, profile:{is_premium:false}});
-            regData && console.log(regData);
+            if(regData){
+                const data = await auth({username, password});
+                setAuth(data);
+                navigate('/account');
+            }
         } else {
             console.log('pass didn\'t match');
         }
@@ -36,7 +44,7 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={11}>
                     <TextField
-                        id="input-with-item-grid"
+                        id="username"
                         label="Username"
                         onChange={e => setUsername(e.target.value)}
                     />
@@ -48,7 +56,7 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={11}>
                     <TextField
-                        id="input-with-item-grid"
+                        id="email"
                         label="Email"
                         onChange={e => setEmail(e.target.value)}
                     />
@@ -60,7 +68,7 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={11}>
                     <TextField
-                        id="input-with-item-grid"
+                        id="password"
                         label="Password"
                         type="password"
                         onChange={e => setPassword(e.target.value)}
@@ -73,7 +81,7 @@ export default function Register() {
                 </Grid>
                 <Grid item xs={11}>
                     <TextField
-                        id="input-with-item-grid"
+                        id="confirmpassword"
                         label="Confirm Password"
                         type="password"
                         onChange={e => setPasswordConfirm(e.target.value)}
